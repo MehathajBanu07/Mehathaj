@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Developer Portfolio</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <style>
+    /* Tailwind custom layers */
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    /* Custom animations */
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in { animation: fade-in 0.8s ease-out; }
+    .animate-fade-in-delay-1 { animation: fade-in 0.8s ease-out 0.2s both; }
+    .animate-fade-in-delay-2 { animation: fade-in 0.8s ease-out 0.4s both; }
+    .animate-fade-in-delay-3 { animation: fade-in 0.8s ease-out 0.6s both; }
+    .animate-fade-in-delay-4 { animation: fade-in 0.8s ease-out 0.8s both; }
+
+    /* Smooth scrolling */
+    html { scroll-behavior: smooth; }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+    /* Portfolio custom styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafb;
+      color: #111827;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      background-color: white;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .scroll-header {
+      background-color: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav__menu {
+      display: none;
+    }
+
+    .show-menu {
+      display: block;
+    }
+
+    .home__title-color {
+      color: #3b82f6;
+    }
+
+    .dark-theme {
+      background-color: #111827;
+      color: #f9fafb;
+    }
+
+    .loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s;
+    }
+
+    .show-scroll {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+
+<body class="overflow-x-hidden">
+
+  <!-- Loader -->
+  <div class="loader">
+    <h2 class="text-2xl font-bold text-blue-500 animate-pulse">Loading...</h2>
+  </div>
+
+  <!-- Header -->
+  <header id="header" class="p-4 flex justify-between items-center shadow-md">
+    <h1 class="text-2xl font-bold">MyPortfolio</h1>
+    <nav id="nav-menu" class="nav__menu md:flex gap-6">
+      <a href="#home" class="nav__link text-blue-600 font-semibold">Home</a>
+      <a href="#about" class="nav__link">About</a>
+      <a href="#skills" class="nav__link">Skills</a>
+      <a href="#portfolio" class="nav__link">Portfolio</a>
+      <a href="#contact" class="nav__link">Contact</a>
+    </nav>
+    <div id="nav-toggle" class="md:hidden cursor-pointer text-3xl">☰</div>
+    <div id="nav-close" class="hidden">✖</div>
+    <button id="theme-button" class="ml-4 text-2xl">🌙</button>
+  </header>
+
+  <!-- Home -->
+  <section id="home" class="h-screen flex flex-col justify-center items-center text-center animate-fade-in">
+    <h2 class="text-4xl font-bold mb-2">Hello, I'm <span class="home__title-color">Mehathaj Banu A</span></h2>
+    <h3 class="text-xl text-gray-600 mb-6">I'm a <span class="text-blue-500" id="typed"></span></h3>
+    <a href="#contact" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">Contact Me</a>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-16 px-6 text-center bg-gray-50 animate-fade-in-delay-1">
+    <h2 class="text-3xl font-bold mb-4">About Me</h2>
+    <p class="max-w-2xl mx-auto text-gray-600">
+      I’m a passionate web developer focused on creating elegant, interactive, and responsive digital experiences.
+    </p>
+    <div class="mt-8 flex justify-center gap-8">
+      <div class="about__info-title text-4xl font-bold text-blue-500">3</div>
+      <div class="about__info-title text-4xl font-bold text-blue-500">25</div>
+      <div class="about__info-title text-4xl font-bold text-blue-500">10</div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-16 px-6 text-center animate-fade-in-delay-2">
+    <h2 class="text-3xl font-bold mb-6">Skills</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div class="skills__content skills__close p-4 shadow rounded-lg">
+        <div class="skills__header cursor-pointer font-semibold text-lg">Frontend</div>
+        <ul class="mt-2 text-gray-600">
+          <li>HTML</li><li>CSS</li><li>JavaScript</li><li>React</li>
+        </ul>
+      </div>
+      <div class="skills__content skills__close p-4 shadow rounded-lg">
+        <div class="skills__header cursor-pointer font-semibold text-lg">Backend</div>
+        <ul class="mt-2 text-gray-600">
+          <li>Python</li><li>Node.js</li><li>MongoDB</li>
+        </ul>
+      </div>
+      <div class="skills__content skills__close p-4 shadow rounded-lg">
+        <div class="skills__header cursor-pointer font-semibold text-lg">Design</div>
+        <ul class="mt-2 text-gray-600">
+          <li>Figma</li><li>Canva</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="py-16 px-6 bg-gray-50 animate-fade-in-delay-3">
+    <h2 class="text-3xl font-bold text-center mb-6">Portfolio</h2>
+    <div class="swiper portfolio__container max-w-4xl mx-auto">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide p-4"><img src="https://picsum.photos/500/300" class="rounded-lg shadow" /></div>
+        <div class="swiper-slide p-4"><img src="https://picsum.photos/501/300" class="rounded-lg shadow" /></div>
+        <div class="swiper-slide p-4"><img src="https://picsum.photos/502/300" class="rounded-lg shadow" /></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 px-6 text-center animate-fade-in-delay-4">
+    <h2 class="text-3xl font-bold mb-6">Contact Me</h2>
+    <form class="contact__form max-w-md mx-auto">
+      <input id="name" type="text" placeholder="Your Name" class="w-full mb-3 p-2 border rounded"/>
+      <input id="email" type="email" placeholder="Your Email" class="w-full mb-3 p-2 border rounded"/>
+      <textarea id="message" placeholder="Your Message" class="w-full mb-3 p-2 border rounded"></textarea>
+      <button type="submit" class="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Send</button>
+    </form>
+  </section>
+
+  <!-- Scroll Up -->
+  <a href="#home" id="scroll-up" class="fixed bottom-6 right-6 bg-blue-500 text-white p-3 rounded-full shadow hidden">↑</a>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <script>
+  /*==================== MENU, SKILLS, THEME, SCROLL, etc. ====================*/
+  /* Your full JavaScript (the one you sent) goes here */
+  /* I’ll insert it fully for you in the next message if you want to preview it inline */
+  </script>
+</body>
+</html>
